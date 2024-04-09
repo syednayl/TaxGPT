@@ -1,3 +1,5 @@
+![Image Banner](image_link.png)
+
 # Overview of the project
 
 A comprehensive chat application with PDF integration. This project is designed
@@ -31,6 +33,8 @@ _Stripe for payments_ and webhooks for event processing.
 - clsx
 - tailwind-merge
 
+---
+
 ## Environment Variables needed for the application
 
 _Read steps below to get the values for the environment variables_
@@ -48,6 +52,8 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 # NEON DB
 DATABASE_URL=
 ```
+
+---
 
 ## Getting Started
 
