@@ -33,6 +33,8 @@ _Stripe for payments_ and webhooks for event processing.
 
 ## Environment Variables needed for the application
 
+_Read steps below to get the values for the environment variables_
+
 ```Bash
 #filename : .env
 # CLERK SETUP
@@ -49,27 +51,41 @@ DATABASE_URL=
 
 ## Getting Started
 
-0. Clone the repo and navigate to 'chatpdf' :
+1. Clone the repo and navigate to 'chatpdf' :
 
 ```Bash
 git clone https://github.com/rkf2778/chatpdf
 cd chatpdf
 ```
 
-1. **Install the dependencies** : Requires
+2. **Install the dependencies** : Requires
    **[Node.js](https://nodejs.org/en/download/)** to be installed
 
 ```Bash
 npm install
 ```
 
-2. **NEON DB** (To get DATABASE_URL for .env file)
+3. **Setup Clerk**
+
+   - Create an account in [here](https://clerk.com/)
+   - Copy the keys displayed and paste it into the .env file :
+
+   ```Bash
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= paste_key_here
+   CLERK_SECRET_KEY= paste_key_here
+   ```
+
+4. **NEON DB** (To get DATABASE_URL for .env file)
 
    - Create an account.
    - Create a project
-   - Copy the URL shown and paste it into DATABASE_URL
+   - Copy the URL shown and paste it into DATABASE_URL in .env file
 
-3. **Drizzle ORM** is edge compatible. Hence we use this instead of Prisma. Plus
+   ```Bash
+   DATABASE_URL = paste_key_here
+   ```
+
+5. **Drizzle ORM** is edge compatible. Hence we use this instead of Prisma. Plus
    it's faster than Prisma.
 
    - Push the DB to drizzle with drizzle-kit
