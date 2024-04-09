@@ -159,3 +159,45 @@ npm install
 ```
 
 - Click "Save changes"
+- How to get the API Keys:
+
+  - Search for "IAM" > Users > Click "Create user"
+  - Enter name of user > Click Next
+  - Permission Options : Set to "Attach policies directly"
+  - Under permission policies, add the following policies: `AmazonS3FullAccess`
+  - Click Next > Click `Create User`
+  - Click the user you created
+  - `Security Credentials` tab
+  - Click "Create Access Key``
+  - Select "Local Code" as use case
+  - Click Next > Click Create Access Key
+  - Add the following to your `.env` file
+
+  ```Bash
+  NEXT_PUBLIC_S3_BUCKET_NAME = your_bucket_name
+  NEXT_PUBLIC_S3_ACCESS_KEY_ID = your_access_key
+  NEXT_PUBLIC_S3_SECRET_ACCESS_KEY = your_secret_access_key
+  ```
+
+  - Change `region` in the file `s3.ts` to the region you have set for your
+    bucket as below example
+
+  ```JavaScript
+  const s3 = new S3({
+        region: "ap-southeast-1",
+        credentials: {
+          accessKeyId: process.env.NEXT_PUBLIC_S3_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.NEXT_PUBLIC_S3_SECRET_ACCESS_KEY!,
+        },
+      });
+  ```
+
+  - Also change the region (example `ap-southeast-1`) in the last line of the
+    file
+
+  ```JavaScript
+    export function getS3Url(file_key: string) {
+      const url = `https://${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}.s3.ap-southeast-1.amazonaws.com/${file_key}`
+      return url
+    }
+  ```
