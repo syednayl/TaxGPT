@@ -71,38 +71,91 @@ cd chatpdf
 npm install
 ```
 
-3. **Setup Clerk**
+3.  **Setup Clerk**
 
-   - Create an account in [here](https://clerk.com/)
-   - Copy the keys displayed and paste it into the .env file :
+- Create an account in [here](https://clerk.com/)
+- Copy the keys displayed and paste it into the .env file :
 
-   ```Bash
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= paste_key_here
-   CLERK_SECRET_KEY= paste_key_here
-   ```
+```Bash
+  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= paste_key_here
+  CLERK_SECRET_KEY= paste_key_here
+```
 
-4. **NEON DB** (To get DATABASE_URL for .env file)
+4.  **NEON DB** (To get DATABASE_URL for .env file)
 
-   - Create an account [here](https://neon.tech/)
-   - Create a project
-   - Copy the URL shown and paste it into DATABASE_URL in .env file
+- Create an account [here](https://neon.tech/)
+- Create a project
+- Copy the URL shown and paste it into `DATABASE_URL` in .env file
 
-   ```Bash
-   DATABASE_URL = paste_key_here
-   ```
+```Bash
+  DATABASE_URL = paste_key_here
+```
 
-5. **Drizzle ORM** is edge compatible. Hence we use this instead of Prisma.
-   `Plus it's faster than Prisma.`
+5.  **Drizzle ORM** is edge compatible. Hence we use this instead of Prisma.
+    `Plus it's faster than Prisma.`
 
-   - Push the DB to drizzle with drizzle-kit
-   - `pg` in below command stands for PostgreSQL
+- Push the DB to drizzle with drizzle-kit
+- pg in below command stands for PostgreSQL
 
-   ```Bash
-   npx drizzle-kit push:pg
-   ```
+```Bash
+  npx drizzle-kit push:pg
+```
 
-   - Open Drizzle-kit studio
+- Open Drizzle-kit studio
 
-   ```Bash
-   npx drizzle-kit studio
-   ```
+```Bash
+  npx drizzle-kit studio
+```
+
+6. **Amazon S3 Bucket**
+
+- Go to [Amazon S3 bucket](https://aws.amazon.com/s3/) and create a new bucket
+- Give a unique bucket name
+- Uncheck **_"Block Public Access settings for this bucket"_**
+- Click on the acknowledge checkbox
+- Click "Create Bucket"
+- Go to that bucket
+- Click "Permissions" tab
+- Go down to "Bucket Policy" and click edit and write below :
+
+```Bash
+      {
+      "Version": "2012-10-17",
+      "Statement": [{
+          "Sid": "Statement1",
+          "Principal": "*",
+          "Effect": "Allow",
+          "Action": [
+            "s3:GetObject"
+          ],
+          "Resource": ["arn:aws:s3::::chatpdfsaas/*"]
+        }]
+      }
+```
+
+- For `"Resource": ["arn:aws:s3::::bucketname/*"]` you have to replace
+  `bucketname` and enter your bucket name instead.
+- Press **"Save Changes"**
+- Go down to `Cross-origin resource sharing (CORS)` and type :
+
+```JavaScript
+  [
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "PUT",
+            "POST",
+            "DELETE",
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": []
+    }
+]
+```
+
+- Click "Save changes"
