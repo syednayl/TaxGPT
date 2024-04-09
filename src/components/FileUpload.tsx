@@ -2,6 +2,7 @@
 import { uploadToS3 } from '@/lib/s3'
 import { Inbox } from 'lucide-react'
 import { useDropzone } from 'react-dropzone'
+import { toast } from 'react-hot-toast'
 
 type Props = {}
 
@@ -13,11 +14,15 @@ const FileUpload = (props: Props) => {
       console.log(acceptedFiles)
       const file = acceptedFiles[0]
       if (file.size > 10 * 1024 * 1024) {
-        alert('File larger than 10MB')
+        // bigger than 10mb!
+        toast.error('File too large')
         return
       }
       try {
         const data = await uploadToS3(file)
+        if (data) {
+          toast.success('File uploaded successfully')
+        }
         // console.log('DATA:', data)
       } catch (error) {
         console.log(error)
