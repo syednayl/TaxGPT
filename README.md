@@ -77,7 +77,7 @@ npm install
 
 4. **NEON DB** (To get DATABASE_URL for .env file)
 
-   - Create an account.
+   - Create an account [here](https://neon.tech/)
    - Create a project
    - Copy the URL shown and paste it into DATABASE_URL in .env file
 
@@ -85,11 +85,11 @@ npm install
    DATABASE_URL = paste_key_here
    ```
 
-5. **Drizzle ORM** is edge compatible. Hence we use this instead of Prisma. Plus
-   it's faster than Prisma.
+5. **Drizzle ORM** is edge compatible. Hence we use this instead of Prisma.
+   `Plus it's faster than Prisma.`
 
    - Push the DB to drizzle with drizzle-kit
-   - 'pg' in below command stands for PostgreSQL
+   - `pg` in below command stands for PostgreSQL
 
    ```Bash
    npx drizzle-kit push:pg
