@@ -24,8 +24,8 @@ type PDFPage = {
 }
 
 export async function loadS3IntoPinecone(fileKey: string) {
-  // 1. obtain the pdf -> downlaod and read from pdf
   try {
+    // 1. obtain the pdf -> downlaod and read from pdf
     console.log('downloading s3 into file system')
     const file_name = await downloadFromS3(fileKey)
     if (!file_name) {
@@ -43,9 +43,7 @@ export async function loadS3IntoPinecone(fileKey: string) {
 
     // 4. upload to pinecone
     const client = await getPineconeClient()
-    // const indexName = String(process.env.PINECONE_INDEX_NAME)
     const pineconeIndex = await client.index('chatpdfsass')
-    // const pineconeIndex = await client.index(indexName)
     const namespace = pineconeIndex.namespace(convertToAscii(fileKey))
 
     console.log('inserting vectors into pinecone')
@@ -53,7 +51,7 @@ export async function loadS3IntoPinecone(fileKey: string) {
 
     return documents[0]
   } catch (err) {
-    console.log(err)
+    console.log('Pinecone : ', err)
   }
 }
 

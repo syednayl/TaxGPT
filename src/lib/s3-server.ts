@@ -1,13 +1,11 @@
 import { S3 } from '@aws-sdk/client-s3'
 import fs from 'fs'
 import path from 'path'
-
 export async function downloadFromS3(file_key: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
       const s3 = new S3({
-        // region: 'eu-west-2',
-        region: process.env.NEXT_PUBLIC_S3_BUCKET_REGION,
+        region: 'ap-southeast-1',
         credentials: {
           accessKeyId: process.env.NEXT_PUBLIC_S3_ACCESS_KEY_ID!,
           secretAccessKey: process.env.NEXT_PUBLIC_S3_SECRET_ACCESS_KEY!
@@ -19,8 +17,8 @@ export async function downloadFromS3(file_key: string): Promise<string> {
       }
 
       const obj = await s3.getObject(params)
-      // console.log('S3 object retrieved:', obj)
 
+      // Create directory
       const tmpDir = '/tmp' // Update this to the appropriate directory if needed
 
       // Check if the directory exists, if not, create it
@@ -28,12 +26,11 @@ export async function downloadFromS3(file_key: string): Promise<string> {
         fs.mkdirSync(tmpDir)
       }
 
-      // const file_name = `/tmp/chatpdf-${Date.now().toString()}.pdf`
+      // const file_name = `/tmp/elliott${Date.now().toString()}.pdf`;
       const file_name = path.join(
         tmpDir,
         `chatpdf-${Date.now().toString()}.pdf`
       )
-
       if (obj.Body instanceof require('stream').Readable) {
         // AWS-SDK v3 has some issues with their typescript definitions, but this works
         // https://github.com/aws/aws-sdk-js-v3/issues/843
@@ -48,7 +45,7 @@ export async function downloadFromS3(file_key: string): Promise<string> {
         // obj.Body?.pipe(fs.createWriteStream(file_name));
       }
     } catch (error) {
-      console.error('FILENAME :', error)
+      console.error('S3-Server: ', error)
       reject(error)
       return null
     }

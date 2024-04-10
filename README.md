@@ -89,6 +89,32 @@ git clone https://github.com/rkf2778/chatpdf
 cd chatpdf
 ```
 
+- Change following configuration for windows and Mac OS:
+   - In "dev" script change between "set" and "export" based on the type of OS.
+
+   - For windows :
+      ```
+      "scripts": {
+         "dev": "set NODE_OPTIONS='--max-old-space-size=8192' && next dev",
+         "build": "next build",
+         "start": "next start",
+         "lint": "next lint",
+         "format": "prettier --check --ignore-path .gitignore .",
+         "format:fix": "prettier --write --ignore-path .gitignore ."
+      },
+      ```
+   - For Mac:
+      ```
+      "scripts": {
+         "dev": "export NODE_OPTIONS='--max-old-space-size=8192' && next dev",
+         "build": "next build",
+         "start": "next start",
+         "lint": "next lint",
+         "format": "prettier --check --ignore-path .gitignore .",
+         "format:fix": "prettier --write --ignore-path .gitignore ."
+      },
+      ```
+
 2. **Install the dependencies** : Requires
    **[Node.js](https://nodejs.org/en/download/)** to be installed
 
@@ -243,6 +269,13 @@ PINECONE_ENVIRONMENT=us-central1-gcp-starter
 PINECONE_API_KEY=your_api_key
 ```
 
+- Find the code as shown below in the files `src\lib\pinecone.ts` and
+  `src\lib\context.ts` and enter your `Index Name` :
+
+```Javascript
+const pineconeIndex = await client.index('your_index_name')
+```
+
 8. **OPENAI API**
 
 - Go to [OpenAI API](https://openai.com/blog/openai-api)
@@ -260,19 +293,25 @@ OPENAI_API_KEY=your_api_key
 
 - Go to [Stripe Dashboard](https://dashboard.stripe.com/)
 - Add `STRIPE_API_KEY`
-- 
+-
 
 ```Bash
 STRIPE_API_KEY=your_api_key
 NEXT_BASE_URL=your_deployment_url
 STRIPE_WEBHOOK_SIGNING_SECRET=your_signing_secret
 ```
-- Go to [https://dashboard.stripe.com/test/webhooks](https://dashboard.stripe.com/test/webhooks) and follow the instruction to get the `STRIPE_WEBHOOK_SIGNING_SECRET`:
 
-  - Enter the `Endpoint URL` which is the URL (instead of `example.vercel.app`) of your deployment :
+- Go to
+  [https://dashboard.stripe.com/test/webhooks](https://dashboard.stripe.com/test/webhooks)
+  and follow the instruction to get the `STRIPE_WEBHOOK_SIGNING_SECRET`:
+
+  - Enter the `Endpoint URL` which is the URL (instead of `example.vercel.app`)
+    of your deployment :
+
   ```
   https://example.vercel.app/api/webhook
   ```
+
   - Select event to listen to
     - checkout.session.completed
     - invoice.payment.succeeded
@@ -285,5 +324,3 @@ STRIPE_WEBHOOK_SIGNING_SECRET=your_signing_secret
 ```Bash
 stripe listen --forward-to localhost:4242/webhook
 ``` -->
-
-
