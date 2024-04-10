@@ -51,6 +51,31 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
 # NEON DB
 DATABASE_URL=
+
+# AMAZON S3
+
+# REGION
+NEXT_PUBLIC_S3_BUCKET_REGION=
+# Bucket Name
+NEXT_PUBLIC_S3_BUCKET_NAME=
+# Access Key
+NEXT_PUBLIC_S3_ACCESS_KEY_ID=
+# Secret Key
+NEXT_PUBLIC_S3_SECRET_ACCESS_KEY=
+
+
+# PINECONE
+PINECONE_INDEX_NAME=
+PINECONE_ENVIRONMENT=
+PINECONE_API_KEY=
+
+# OPENAI
+OPENAI_API_KEY=
+
+# STRIPE
+STRIPE_API_KEY=
+STRIPE_WEBHOOK_SIGNING_SECRET=
+NEXT_BASE_URL=your_deployment_url
 ```
 
 ---
@@ -235,10 +260,16 @@ OPENAI_API_KEY=your_api_key
 
 - Go to [Stripe Dashboard](https://dashboard.stripe.com/)
 - Add `STRIPE_API_KEY`
--
+- 
 
 ```Bash
 STRIPE_API_KEY=your_api_key
 NEXT_BASE_URL=your_deployment_url
 STRIPE_WEBHOOK_SIGNING_SECRET=your_signing_secret
+```
+- Go to [https://dashboard.stripe.com/test/webhooks](https://dashboard.stripe.com/test/webhooks) and follow the instruction to get the `STRIPE_WEBHOOK_SIGNING_SECRET` 
+- Run the following command in terminal to get value for `STRIPE_WEBHOOK_SIGNING_SECRET` :
+
+```Bash
+stripe listen --forward-to localhost:4242/webhook
 ```
