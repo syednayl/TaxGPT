@@ -201,3 +201,44 @@ npm install
       return url
     }
   ```
+
+7. **Pinecone DB Setup**
+
+- Go to [Pinecone](https://www.pinecone.io/) > Create an account
+- Create new project > Create a new Index
+  - Configure your Index
+    - Dimensions : 1536
+  - Click `Create Index`
+- Create API Key and paste keys in `.env` file:
+  - _PINECONE_ENVIRONMENT value is of the format REGION-ENVIRONMENT_
+
+```Bash
+PINECONE_INDEX_NAME=your_index_name
+PINECONE_ENVIRONMENT=us-central1-gcp-starter
+PINECONE_API_KEY=your_api_key
+```
+
+8. **OPENAI API**
+
+- Go to [OpenAI API](https://openai.com/blog/openai-api)
+- Menu > API > Overview
+- Click `For Developers` > `Embeddings`
+- Login if not yet done
+- Go to `API Keys` and create a new Secret Key
+- Copy and paste API key into `.env` file
+
+```Bash
+OPENAI_API_KEY=your_api_key
+```
+
+9. **Stripe API Key**
+
+- Go to [Stripe Dashboard](https://dashboard.stripe.com/)
+- Add `STRIPE_API_KEY`
+-
+
+```Bash
+STRIPE_API_KEY=your_api_key
+NEXT_BASE_URL=your_deployment_url
+STRIPE_WEBHOOK_SIGNING_SECRET=your_signing_secret
+```
