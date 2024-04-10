@@ -267,9 +267,23 @@ STRIPE_API_KEY=your_api_key
 NEXT_BASE_URL=your_deployment_url
 STRIPE_WEBHOOK_SIGNING_SECRET=your_signing_secret
 ```
-- Go to [https://dashboard.stripe.com/test/webhooks](https://dashboard.stripe.com/test/webhooks) and follow the instruction to get the `STRIPE_WEBHOOK_SIGNING_SECRET` 
-- Run the following command in terminal to get value for `STRIPE_WEBHOOK_SIGNING_SECRET` :
+- Go to [https://dashboard.stripe.com/test/webhooks](https://dashboard.stripe.com/test/webhooks) and follow the instruction to get the `STRIPE_WEBHOOK_SIGNING_SECRET`:
+
+  - Enter the `Endpoint URL` which is the URL (instead of `example.vercel.app`) of your deployment :
+  ```
+  https://example.vercel.app/api/webhook
+  ```
+  - Select event to listen to
+    - checkout.session.completed
+    - invoice.payment.succeeded
+  - Click on `Add endpoint`
+  - You'll get your `signing_secret`
+  - Paste it into `STRIPE_WEBHOOK_SIGNING_SECRET`
+
+<!-- - Run the following command in terminal to get value for `STRIPE_WEBHOOK_SIGNING_SECRET` :
 
 ```Bash
 stripe listen --forward-to localhost:4242/webhook
-```
+``` -->
+
+
