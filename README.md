@@ -1,6 +1,5 @@
 ![image](https://github.com/rkf2778/chatpdf/assets/41117031/55660ed2-1bda-4f90-8714-e9cc0e1c209e)
 
-
 # Overview of the project
 
 A comprehensive chat application with PDF integration. This project is designed
@@ -10,6 +9,8 @@ assistant uses the OpenAI API to generate responses based on the chat context.
 The application also includes a _subscription feature_, where users can
 subscribe to access premium features. The subscription process is handled using
 _Stripe for payments_ and webhooks for event processing.
+
+![Untitled-2024-04-08-1959](https://github.com/rkf2778/chatpdf/assets/41117031/001d4c5b-4239-49e1-9f08-ae321686ca6f)
 
 ## Technologies and Frameworks
 
