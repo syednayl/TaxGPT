@@ -65,7 +65,7 @@ const FileUpload = () => {
     }
   })
   return (
-    <div className='rounded-xl bg-white p-2'>
+    <div className='rounded-xl bg-gray-400 p-2'>
       <div
         {...getRootProps({
           className:
@@ -76,15 +76,13 @@ const FileUpload = () => {
         {uploading || isLoading ? (
           <>
             {/* loading state */}
-            <Loader2 className='h-10 w-10 animate-spin text-blue-500' />
-            <p className='mt-2 text-sm text-slate-400'>
-              Spilling Tea to GPT...
-            </p>
+            <Loader2 className='h-10 w-10 animate-spin text-yellow-500' />
+            <p className='mt-2 text-sm text-slate-400'>Buckle Up!</p>
           </>
         ) : (
           <>
-            <Inbox className='h-10 w-10 text-blue-500' />
-            <p className='mt-2 text-sm text-slate-400'>Drop PDF Here</p>
+            <Inbox className='h-10 w-10 text-yellow-400' />
+            <p className='mt-2 text-sm text-slate-400'>Drag your W8 here</p>
           </>
         )}
       </div>

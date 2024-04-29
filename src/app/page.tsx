@@ -8,6 +8,7 @@ import FileUpload from '@/components/FileUpload'
 import { db } from '@/lib/db'
 import { chats } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
+import { cn } from '@/lib/utils'
 
 export default async function Home() {
   const { userId } = await auth()
@@ -26,13 +27,15 @@ export default async function Home() {
   }
   return (
     <div
-      className='min-h-screen w-screen bg-gradient-to-r from-rose-100 to-teal-100'
+      className='min-h-screen w-screen bg-gray-900'
       suppressHydrationWarning={true}
     >
       <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
         <div className='flex flex-col items-center text-center'>
           <div className='flex items-center'>
-            <h1 className='mr-3 text-5xl font-semibold'>Chat with any PDF</h1>
+            <h1 className='mr-3 text-5xl font-semibold text-yellow-500'>
+              TaxGPT
+            </h1>
             <UserButton afterSignOutUrl='/' />
           </div>
 
@@ -40,8 +43,13 @@ export default async function Home() {
             {isAuth && firstChat && (
               <>
                 <Link href={`/chat/${firstChat.id}`}>
-                  <Button>
-                    Go to Chats <ArrowRight className='ml-2' />
+                  <Button
+                    className={cn('', {
+                      'text-white': 1,
+                      'hover:bg-yellow-500 hover:text-white ': 1
+                    })}
+                  >
+                    See Chats <ArrowRight className='ml-2' />
                   </Button>
                 </Link>
                 {/* <div className="ml-3">
@@ -52,9 +60,8 @@ export default async function Home() {
           </div>
 
           <div>
-            <p className='mt-1 max-w-xl text-lg text-slate-600'>
-              Join millions of students, researchers and professionals to
-              instantly answer questions and understand research with AI
+            <p className='mt-1 max-w-xl text-lg text-yellow-500'>
+              W8 got you worried? Jump in and ask away your worries!
             </p>
           </div>
 
@@ -63,8 +70,13 @@ export default async function Home() {
               <FileUpload />
             ) : (
               <Link href='/sign-in'>
-                <Button>
-                  Login to get Started!
+                <Button
+                  className={cn('', {
+                    ' text-white': 1,
+                    'hover:bg-yellow-500 hover:text-white': 1
+                  })}
+                >
+                  Login!
                   <LogIn className='ml-2 h-4 w-4' />
                 </Button>
               </Link>
