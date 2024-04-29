@@ -8,10 +8,9 @@ export async function getMatchesFromEmbeddings(
 ) {
   try {
     const client = new Pinecone({
-      environment: process.env.PINECONE_ENVIRONMENT!,
       apiKey: process.env.PINECONE_API_KEY!
     })
-    const pineconeIndex = await client.index('chatpdfsass')
+    const pineconeIndex = await client.index('taxgpt')
     const namespace = pineconeIndex.namespace(convertToAscii(fileKey))
     const queryResult = await namespace.query({
       topK: 5,

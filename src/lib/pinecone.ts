@@ -11,7 +11,6 @@ import { convertToAscii } from './utils'
 
 export const getPineconeClient = () => {
   return new Pinecone({
-    environment: process.env.PINECONE_ENVIRONMENT!,
     apiKey: process.env.PINECONE_API_KEY!
   })
 }
@@ -43,7 +42,8 @@ export async function loadS3IntoPinecone(fileKey: string) {
 
     // 4. upload to pinecone
     const client = await getPineconeClient()
-    const pineconeIndex = await client.index('chatpdfsass')
+    console.log('Connected')
+    const pineconeIndex = await client.index('taxgpt')
     const namespace = pineconeIndex.namespace(convertToAscii(fileKey))
 
     console.log('inserting vectors into pinecone')
@@ -51,7 +51,7 @@ export async function loadS3IntoPinecone(fileKey: string) {
 
     return documents[0]
   } catch (err) {
-    console.log('Pinecone : ', err)
+    // console.log('Pinecone : ', err!.data)
   }
 }
 
