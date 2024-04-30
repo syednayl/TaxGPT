@@ -1,10 +1,13 @@
-## Details of the Project:
+## Details of the Project
 
 This is a full stack web app that allows users to upload their W-2 forms (or
 even other PDF's) and interact with an AI that can help them understand the
 document and look for whatever they need within the doc.
 
-## Details about the major Technologies, Languages, Frameworks & Dependencies used:
+## Details about the major Technologies, Languages, Frameworks & Dependencies used
+
+Majorly these are the technologies used, for an even more in depth look you can
+look into the package.json:
 
 - Next.js for the FE & BE servers.
 - React
@@ -33,6 +36,32 @@ Deployment Tools used:
 
 Vercel was used to deploy this as it is the easiest tool to use for deployments
 of NextJs Apps.
+
+AI Coding Assistants used:
+
+ChatGPT
+
+## Objectives met
+
+All of the main requirements of this coding assignment were met (Only the
+backend was not built in Django but that was a preference & basic initilization
+scripts could not be added as I require authentication through google), along
+with some off of the wishlist.
+
+Listing the wishlist objectives I met for your ease:
+
+- Enhanced UI/UX design: Tried my best to make the FE as pretty and smooth as I
+  could.
+- Show social security number after the text confirmation: The AI will ask you
+  to confirm if you wish to see the social security number before revealing it.
+- Implementation of security measures such as file encryption and user
+  authentication: I have added User Auth using clerk.
+- The Docker setup is configured for both development and production
+  environments: In the docker compose file you can change the environment value
+  between development and production and based on that the dockefile will run
+  certain commands.
+- Use of a vector database and integration of a knowledge graph for advanced
+  data handling: I have used Pinecone DB as a vector database.
 
 ## Getting Started
 
