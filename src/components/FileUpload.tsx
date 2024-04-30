@@ -75,7 +75,9 @@ const FileUpload = () => {
         ) : (
           <>
             <Inbox className='h-10 w-10 text-yellow-400' />
-            <p className='mt-2 text-sm text-slate-400'>Drag your W8 here</p>
+            <p className='mt-2 text-sm text-slate-400'>
+              Drag your W2 form here
+            </p>
           </>
         )}
       </div>
