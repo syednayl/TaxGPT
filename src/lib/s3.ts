@@ -3,7 +3,6 @@ import AWS from 'aws-sdk'
 export function uploadToS3(
   file: File
 ): Promise<{ file_key: string; file_name: string }> {
-  console.log(file.type)
   return new Promise(async (resolve, reject) => {
     try {
       const s3 = new AWS.S3({
@@ -13,7 +12,6 @@ export function uploadToS3(
       })
 
       const file_key = Date.now().toString() + file.name.replace(' ', '-')
-      console.log('Type FIle', file.type)
 
       s3.upload(
         {
@@ -24,22 +22,21 @@ export function uploadToS3(
         },
         (err, data) => {
           if (err) {
-            console.log(err, 'ERROR uploadFile')
+            console.log('Error', err)
             reject(err)
           } else {
             return resolve({ file_key: file_key, file_name: file.name })
           }
         }
       )
-    } catch (error) {
-      console.log('Error Upload:  ', error)
-      reject(error)
+    } catch (err) {
+      console.log('Error:  ', err)
+      reject(err)
     }
   })
 }
 
 export function getS3Url(file_key: string) {
   const url = `https://${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}.s3.eu-north-1.amazonaws.com/${file_key}`
-  console.log('URL:', url)
   return url
 }

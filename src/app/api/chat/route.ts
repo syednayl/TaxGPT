@@ -24,8 +24,6 @@ export async function POST(req: Request) {
     const lastMessage = messages[messages.length - 1]
     const context = await getContext(lastMessage.content, fileKey)
 
-    console.log('Context: ', context)
-
     const prompt = {
       role: 'system',
       content: `AI assistant is a brand new, powerful, human-like artificial intelligence.
@@ -55,7 +53,6 @@ export async function POST(req: Request) {
     })
     const stream = OpenAIStream(response, {
       onStart: async () => {
-        // save user message into db
         await db.insert(_messages).values({
           chatId,
           content: lastMessage.content,
@@ -63,7 +60,6 @@ export async function POST(req: Request) {
         })
       },
       onCompletion: async completion => {
-        // save ai message into db
         await db.insert(_messages).values({
           chatId,
           content: completion,

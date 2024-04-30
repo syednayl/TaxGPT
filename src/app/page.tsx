@@ -3,8 +3,6 @@ import { UserButton, auth } from '@clerk/nextjs'
 import Link from 'next/link'
 import { ArrowRight, LogIn } from 'lucide-react'
 import FileUpload from '@/components/FileUpload'
-// import { checkSubscription } from '@/lib/subscription'
-// import SubscriptionButton from '@/components/SubscriptionButton'
 import { db } from '@/lib/db'
 import { chats } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
@@ -13,13 +11,12 @@ import { cn } from '@/lib/utils'
 export default async function Home() {
   const { userId } = await auth()
   const isAuth = !!userId
-  // const isPro = await checkSubscription();
   let firstChat
   if (userId) {
     try {
       firstChat = await db.select().from(chats).where(eq(chats.userId, userId))
-    } catch (erorr) {
-      console.log()
+    } catch (err) {
+      console.log('Error', err)
     }
     if (firstChat) {
       firstChat = firstChat[0]
@@ -52,16 +49,13 @@ export default async function Home() {
                     See Chats <ArrowRight className='ml-2' />
                   </Button>
                 </Link>
-                {/* <div className="ml-3">
-                  <SubscriptionButton isPro={isPro} />
-                </div> */}
               </>
             )}
           </div>
 
           <div>
             <p className='mt-1 max-w-xl text-lg text-yellow-500'>
-              W8 got you worried? Jump in and ask away your worries!
+              W2 forms got you worried? Jump in and ask away your worries!
             </p>
           </div>
 

@@ -24,34 +24,21 @@ type PDFPage = {
 
 export async function loadS3IntoPinecone(fileKey: string) {
   try {
-    // 1. obtain the pdf -> downlaod and read from pdf
-    console.log('downloading s3 into file system')
     const file_name = await downloadFromS3(fileKey)
     if (!file_name) {
-      throw new Error('could not download from s3')
+      throw new Error('Download from S3 failed')
     }
-    console.log('loading pdf into memory' + file_name)
     const loader = new PDFLoader(file_name)
     const pages = (await loader.load()) as PDFPage[]
-
-    // 2. split and segment the pdf
     const documents = await Promise.all(pages.map(prepareDocument))
-
-    // 3. vectorise and embed individual documents
     const vectors = await Promise.all(documents.flat().map(embedDocument))
-
-    // 4. upload to pinecone
     const client = await getPineconeClient()
-    console.log('Connected')
     const pineconeIndex = await client.index('taxgpt')
     const namespace = pineconeIndex.namespace(convertToAscii(fileKey))
-
-    console.log('inserting vectors into pinecone')
     await namespace.upsert(vectors)
-
     return documents[0]
   } catch (err) {
-    // console.log('Pinecone : ', err!.data)
+    console.log('Error : ', err)
   }
 }
 
@@ -69,7 +56,7 @@ async function embedDocument(doc: Document) {
       }
     } as PineconeRecord
   } catch (error) {
-    console.log('error embedding document', error)
+    console.log('Error', error)
     throw error
   }
 }
@@ -82,7 +69,6 @@ export const truncateStringByBytes = (str: string, bytes: number) => {
 async function prepareDocument(page: PDFPage) {
   let { pageContent, metadata } = page
   pageContent = pageContent.replace(/\n/g, '')
-  // split the docs
   const splitter = new RecursiveCharacterTextSplitter()
   const docs = await splitter.splitDocuments([
     new Document({
