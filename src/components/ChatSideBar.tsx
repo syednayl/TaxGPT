@@ -19,7 +19,12 @@ const ChatSideBar = ({ chats, chatId }: Props) => {
   return (
     <div className='soff h-screen w-full overflow-scroll bg-gray-900 p-4 text-yellow-500'>
       <Link href='/'>
-        <Button className='w-full border border-dashed border-yellow-400'>
+        <Button
+          className={cn('w-full border border-dashed border-yellow-400', {
+            'bg-gray-900 text-white': 1,
+            'hover:bg-yellow-400 hover:text-white': 1
+          })}
+        >
           <PlusCircle className='mr-2 h-4 w-4' />
           New Chat
         </Button>
