@@ -19,6 +19,20 @@ document and look for whatever they need within the doc.
 - Drizzle-kit
 - OpenAI Edge
 - ESLint
+- PDFParse to parse pdfs
+
+Open Source Repository Used:
+
+The repository that mine is forked from is the one that I used, which was a
+rejected PR of another repository. The repository had made some good code within
+it but was not functional and mostly used deprecated libraries but I fixed and
+it and brought it up to speed for this coding challenge. Link to forked
+repository: https://github.com/rkf2778/chatpdf .
+
+Deployment Tools used:
+
+Vercel was used to deploy this as it is the easiest tool to use for deployments
+of NextJs Apps.
 
 ## Getting Started
 
@@ -43,7 +57,7 @@ as was required.
 1. Clone the repo and navigate to 'chatpdf' :
 
 ```Bash
-git clone https://github.com/rkf2778/chatpdf
+git clone repo-link
 cd chatpdf
 ```
 
