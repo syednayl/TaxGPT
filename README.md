@@ -23,6 +23,8 @@ into the package.json file:
 - OpenAI Edge
 - ESLint
 - PDFParse to parse pdfs
+- ShadCN
+- Radix as a UI Library
 
 Open Source Repository Used:
 
