@@ -1,88 +1,44 @@
-![image](https://github.com/rkf2778/chatpdf/assets/41117031/55660ed2-1bda-4f90-8714-e9cc0e1c209e)
+## Details of the Project:
 
-# Overview of the project
+This is a full stack web app that allows users to upload their W-2 forms (or
+even other PDF's) and interact with an AI that can help them understand the
+document and look for whatever they need within the doc.
 
-A comprehensive chat application with PDF integration. This project is designed
-to provide a seamless chat experience where users can **upload PDF files**,
-create chats around them, and **interact with an AI assistant**. The AI
-assistant uses the OpenAI API to generate responses based on the chat context.
-The application also includes a _subscription feature_, where users can
-subscribe to access premium features. The subscription process is handled using
-_Stripe for payments_ and webhooks for event processing.
+## Details about the major Technologies, Languages, Frameworks & Dependencies used:
 
-![Untitled-2024-04-08-1959](https://github.com/rkf2778/chatpdf/assets/41117031/001d4c5b-4239-49e1-9f08-ae321686ca6f)
-
-## Technologies and Frameworks
-
-- Next.js
+- Next.js for the FE & BE servers.
 - React
 - TypeScript
 - Tailwind CSS
-- Clerk
+- Clerk for Authentication
 - Drizzle ORM
-- PostgreSQL
-- AWS SDK
+- PostgreSQL on Neon.Tech
+- AWS S3 & AWS SDK
 - OpenAI API
-- Stripe
-- Axios
-- Pinecone
+- Pinecone for Vector Database
 - Drizzle-kit
 - OpenAI Edge
-- Neon Database Serverless
-- Drizzle-orm/neon-http
-- @tanstack/react-query
-- @clerk/nextjs
-- clsx
-- tailwind-merge
-
----
-
-## Environment Variables needed for the application
-
-_Read steps below to get the values for the environment variables_
-
-```Bash
-#filename : .env
-# CLERK SETUP
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
-
-# NEON DB
-DATABASE_URL=
-
-# AMAZON S3
-
-# REGION
-NEXT_PUBLIC_S3_BUCKET_REGION=
-# Bucket Name
-NEXT_PUBLIC_S3_BUCKET_NAME=
-# Access Key
-NEXT_PUBLIC_S3_ACCESS_KEY_ID=
-# Secret Key
-NEXT_PUBLIC_S3_SECRET_ACCESS_KEY=
-
-
-# PINECONE
-PINECONE_INDEX_NAME=
-PINECONE_ENVIRONMENT=
-PINECONE_API_KEY=
-
-# OPENAI
-OPENAI_API_KEY=
-
-# STRIPE
-STRIPE_API_KEY=
-STRIPE_WEBHOOK_SIGNING_SECRET=
-NEXT_BASE_URL=your_deployment_url
-```
-
----
+- ESLint
 
 ## Getting Started
+
+(This is mostly copied over from the original authors Github as my process is
+equivalent)
+
+You need to follow through and make accounts and get the keys for all relevant
+services as below, instead of running using
+
+```Bash
+npm run dev
+```
+
+you could alternatively use
+
+```Bash
+docker-compose up
+```
+
+as was required.
 
 1. Clone the repo and navigate to 'chatpdf' :
 
@@ -92,30 +48,31 @@ cd chatpdf
 ```
 
 - Change following configuration for windows and Mac OS:
-   - In "dev" script change between "set" and "export" based on the type of OS.
 
-   - For windows :
-      ```
-      "scripts": {
-         "dev": "set NODE_OPTIONS='--max-old-space-size=8192' && next dev",
-         "build": "next build",
-         "start": "next start",
-         "lint": "next lint",
-         "format": "prettier --check --ignore-path .gitignore .",
-         "format:fix": "prettier --write --ignore-path .gitignore ."
-      },
-      ```
-   - For Mac:
-      ```
-      "scripts": {
-         "dev": "export NODE_OPTIONS='--max-old-space-size=8192' && next dev",
-         "build": "next build",
-         "start": "next start",
-         "lint": "next lint",
-         "format": "prettier --check --ignore-path .gitignore .",
-         "format:fix": "prettier --write --ignore-path .gitignore ."
-      },
-      ```
+  - In "dev" script change between "set" and "export" based on the type of OS.
+
+  - For windows :
+    ```
+    "scripts": {
+       "dev": "set NODE_OPTIONS='--max-old-space-size=8192' && next dev",
+       "build": "next build",
+       "start": "next start",
+       "lint": "next lint",
+       "format": "prettier --check --ignore-path .gitignore .",
+       "format:fix": "prettier --write --ignore-path .gitignore ."
+    },
+    ```
+  - For Mac:
+    ```
+    "scripts": {
+       "dev": "export NODE_OPTIONS='--max-old-space-size=8192' && next dev",
+       "build": "next build",
+       "start": "next start",
+       "lint": "next lint",
+       "format": "prettier --check --ignore-path .gitignore .",
+       "format:fix": "prettier --write --ignore-path .gitignore ."
+    },
+    ```
 
 2. **Install the dependencies** : Requires
    **[Node.js](https://nodejs.org/en/download/)** to be installed
@@ -321,8 +278,17 @@ STRIPE_WEBHOOK_SIGNING_SECRET=your_signing_secret
   - You'll get your `signing_secret`
   - Paste it into `STRIPE_WEBHOOK_SIGNING_SECRET`
 
-<!-- - Run the following command in terminal to get value for `STRIPE_WEBHOOK_SIGNING_SECRET` :
+10. That was a lot of work, go ahead and run the project now by either running
 
-```Bash
-stripe listen --forward-to localhost:4242/webhook
-``` -->
+`````Bash
+npm run dev
+```
+
+
+or alternatively
+
+````Bash
+docker-compose up
+```
+
+`````
