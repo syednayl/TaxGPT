@@ -2,12 +2,12 @@
 
 This is a full stack web app that allows users to upload their W-2 forms (or
 even other PDF's) and interact with an AI that can help them understand the
-document and look for whatever they need within the doc.
+document and look for whatever they need within the PDF.
 
 ## Details about the major Technologies, Languages, Frameworks & Dependencies used
 
-Majorly these are the technologies used, for an even more in depth look you can
-look into the package.json:
+Majorly these are the technologies used, for a more in depth look you can look
+into the package.json file:
 
 - Next.js for the FE & BE servers.
 - React
@@ -26,11 +26,13 @@ look into the package.json:
 
 Open Source Repository Used:
 
-The repository that mine is forked from is the one that I used, which was a
-rejected PR of another repository. The repository had made some good code within
-it but was not functional and mostly used deprecated libraries but I fixed and
-it and brought it up to speed for this coding challenge. Link to forked
-repository: https://github.com/rkf2778/chatpdf .
+The repository that I forked from is the only open spurce repository I used. It
+is a rejected PR of another repository that has lots of deprecated dependencies.
+The PR had made some good progress within it but was not functional and mostly
+used deprecated libraries. I fixed the issues and brought it up to date and up
+to speed for this coding challenge.
+
+Link to forked repository: https://github.com/rkf2778/chatpdf .
 
 Deployment Tools used:
 
