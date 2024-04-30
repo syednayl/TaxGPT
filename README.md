@@ -295,36 +295,6 @@ const pineconeIndex = await client.index('your_index_name')
 OPENAI_API_KEY=your_api_key
 ```
 
-9. **Stripe API Key**
-
-- Go to [Stripe Dashboard](https://dashboard.stripe.com/)
-- Add `STRIPE_API_KEY`
--
-
-```Bash
-STRIPE_API_KEY=your_api_key
-NEXT_BASE_URL=your_deployment_url
-STRIPE_WEBHOOK_SIGNING_SECRET=your_signing_secret
-```
-
-- Go to
-  [https://dashboard.stripe.com/test/webhooks](https://dashboard.stripe.com/test/webhooks)
-  and follow the instruction to get the `STRIPE_WEBHOOK_SIGNING_SECRET`:
-
-  - Enter the `Endpoint URL` which is the URL (instead of `example.vercel.app`)
-    of your deployment :
-
-  ```
-  https://example.vercel.app/api/webhook
-  ```
-
-  - Select event to listen to
-    - checkout.session.completed
-    - invoice.payment.succeeded
-  - Click on `Add endpoint`
-  - You'll get your `signing_secret`
-  - Paste it into `STRIPE_WEBHOOK_SIGNING_SECRET`
-
 10. That was a lot of work, go ahead and run the project now by either running
 
 `````Bash
